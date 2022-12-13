@@ -36,3 +36,15 @@ void yyerror()
    printf("\nEntered arithmetic expression is Invalid\n\n");
    flag=1;
 }
+
+
+//cd lpcc
+gedit 4a.l
+gedit 4a.y
+lex 4a.l
+yacc -d 4a.y
+cc lex.yy.c y.tab.c
+/.a.out
+Input: max
+    abc
+    xyz
