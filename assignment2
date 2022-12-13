@@ -1,0 +1,102 @@
+file = open("compilers.txt",'r')
+data = file.read()
+n = data.split("\n")
+print(n)
+
+MNT = {"M_NAME": [],"M_ARG":[],"M_INDEX": []}
+for i in n:
+    if "MACRO" in i:
+        l = list(i.split(" "))
+        # print(l)
+        MNT["M_NAME"].append(l[1])
+        if len(l)==2:
+            MNT["M_ARG"].append(0)
+        else:
+            MNT["M_ARG"].append(len(l[2:]))
+
+new = []
+for d in n:
+    if "MACRO" not in d and "\t" not in d and "MEND" not in d:
+        new.append(d)
+print("\t\t INTERMEDIATE CODE\n",new)
+print("\n")
+
+
+MDT = {}
+st = []
+for i in range(len(n)):
+    if "MACRO" in n[i]:
+      wind = n[i+1:]
+      for j in range(len(wind)):
+          wind[j] = wind[j].replace("\t","")
+          st.append(wind[j])
+          if "MEND" in wind[j]:
+              break
+# for i in range(len(st)):
+#     MDT[i+1] = st[i]
+print("\t\t MDT TABLE\n",st)
+print("\n")
+
+for i in range(len(n)):
+    if "MACRO" in n[i]:
+        word = n[i+1]
+        word = word.replace("\t","")
+        # print(word)
+        for i in range(len(st)):
+            if word == st[i]:
+                MNT["M_INDEX"].append(i+1)
+print("\t\t MNT TABLE\n",MNT)
+print("\n")
+
+"""********************************** PASS 1 *************************************"""
+def isArg(name):
+    i = MNT["M_NAME"].index(name)
+    
+    if MNT["M_ARG"][i]>0:
+        return True
+    else:
+        return False
+def arg_cal(name):
+    i = MNT["M_NAME"].index(name)
+    actual = {}
+    for i in n:
+        if name in i:
+            l = list(i.split(" "))
+            l.remove("MACRO")
+
+            break
+    # print(l)
+    for i,j in zip(l,IC):
+        actual[i] = j
+    print(actual)
+        
+        
+with open("PASS_1.txt",'w') as new_file:
+
+    for line in new:
+        IC = list(map(str,line.split(" ")))
+        # print(IC)
+        
+        if IC[0] in MNT["M_NAME"]:
+
+            if isArg(IC[0]):
+                comp = arg_cal(IC[0])
+                print(comp)
+                
+            ind = MNT["M_NAME"].index(IC[0])
+            k_start = MNT["M_INDEX"][ind]
+            if ind == len(MNT["M_INDEX"])-1:
+                x = st[k_start-1:]
+                
+            else:
+                k_end = MNT["M_INDEX"][ind+1]
+                x = st[k_start-1:k_end-1]
+                
+            for m in x:
+                    new_file.write(m+"\n")
+            
+        else:
+            new_file.write(line+"\n")
+            
+            
+new_file.close()
