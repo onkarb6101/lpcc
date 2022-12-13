@@ -110,3 +110,8 @@ return wp->word_type;
 }
 return LOOKUP; /* not found */
 }
+
+//Enter string:
+keyword auto break
+break
+auto
