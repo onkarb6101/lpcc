@@ -51,3 +51,12 @@ main ( )
  yylex();
  return 0;  
 } 
+
+//Instructions
+cd lpcc
+gedit 3c.l
+flex 3c.l
+lex 3c.l
+cc lex.yy.c -lfl
+./a.out
+Enter string: if else for while
