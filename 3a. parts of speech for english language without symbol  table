@@ -79,6 +79,7 @@ main ( )
 
 // Run Instructions
 create folder names lpcc with - mkdir lpcc
+pwd - home directory
 choose directory by - cd Desktop/
 		      ls - shows folders
 		      cd lpcc
