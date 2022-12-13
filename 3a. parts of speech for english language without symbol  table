@@ -1,3 +1,4 @@
+
 %{
 /*
 * We expnd upon the first example by adding recognition of scane other
@@ -76,6 +77,7 @@ main ( )
  printf("Enter a string :- ");
  yylex();
  return 0;  
+}
 
 // Run Instructions
 create folder names lpcc with - mkdir lpcc
