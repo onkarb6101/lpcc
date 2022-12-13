@@ -11,3 +11,12 @@ pow return POW;
 , return comma;
 [\n] return NL;
 %%
+
+////cd lpcc
+gedit 4a.l
+gedit 4a.y
+lex 4a.l
+yacc -d 4a.y
+gcc lex.yy.c y.tab.c -lm
+/.a.out
+Input: pow(8,2)
