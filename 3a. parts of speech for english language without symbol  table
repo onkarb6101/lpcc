@@ -87,5 +87,5 @@ choose directory by - cd Desktop/
 gedit 3a.l - opens file then copy content into it
 flex 3a.l - runs file
 cc lex.yy.c -lfl
-./a.out
+./a.outv - running input file
 Enter string: he is a boy and he is playing
