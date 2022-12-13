@@ -65,3 +65,5 @@ for i in range(opc):
         op2 = s[j+1] + ""
         print("t"+ str(i+1) + " = ", op1 + str(operators[i][0]) + op2)
         visited[j] = visited[j-1] = visited[j+1] = True
+        
+        //Input: a*b-c
