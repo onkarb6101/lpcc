@@ -114,3 +114,6 @@ return wp->word_type;
 }
 return LOOKUP; /* not found */
 }
+
+Enter string:
+verb is am are was were 
